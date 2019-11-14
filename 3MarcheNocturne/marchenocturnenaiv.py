@@ -1,6 +1,5 @@
 import math
 
-@profile
 def marche_nocturne(n, liste_prix, b):
     """
     :param n: nombre de minerai rare
@@ -12,11 +11,14 @@ def marche_nocturne(n, liste_prix, b):
     """
     bestS = math.inf
     for i in range(n):
+        s = 0
         for j in range(i,n):
-            s = sum(liste_prix[i:j+1])
-            #print(i,j,s)
+            s += liste_prix[j]
             if s == b :
                 bestS = min(bestS, j-i+1)
+                break
+            elif s > b:
+                break
     if bestS == math.inf :
         print(-1)
     else :
